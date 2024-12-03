@@ -1,0 +1,79 @@
+
+
+CREATE TABLE `motopartsshop`.`slides` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `img` VARCHAR(255) NULL,
+  PRIMARY KEY (`id`)
+);
+
+
+
+CREATE TABLE `motopartsshop`.`categories` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `description` TEXT NULL,
+  PRIMARY KEY (`id`)
+);
+
+CREATE TABLE `motopartsshop`.`products` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `description` TEXT NULL,
+  `price` DECIMAL(10, 2) NULL,
+  `stock` INT NULL,
+  `sale` INT(3) NULL,
+  `title` VARCHAR(255) NULL,
+  `highlight` BOOLEAN NULL,
+  `new_product` BOOLEAN NULL,
+  `detail` LONGTEXT NULL,
+  `category_id` INT NULL,
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`category_id`) REFERENCES `motopartsshop`.`categories` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE  -- Khi category được xóa hoặc cập nhật, các sản phẩm liên quan cũng sẽ bị xóa hoặc cập nhật
+);
+
+CREATE TABLE `motopartsshop`.`color` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `name` VARCHAR(255) NULL,
+  `code` VARCHAR(255) NULL,
+  `img` VARCHAR(255) NULL,
+  `id_product` INT NULL,  -- Liên kết với bảng products
+  PRIMARY KEY (`id`),
+  FOREIGN KEY (`id_product`) REFERENCES `motopartsshop`.`products` (`id`)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE  -- Khi sản phẩm bị xóa hoặc cập nhật, các màu sắc liên quan cũng sẽ bị xóa hoặc cập nhật
+);
+
+INSERT INTO `motopartsshop`.`slides` (`img`) VALUES
+('uu-dai-1.jpg'),
+('uu-dai-2.jpg'),
+('uu-dai-3.jpg');
+
+
+
+INSERT INTO `motopartsshop`.`products` (`id`, `name`, `description`, `price`, `stock`, `sale`, `title`, `highlight`, `new_product`, `detail`, `category_id`) VALUES
+(1, 'Lốp xe Michelin 120/70-17', 'Lốp xe Michelin cho xe máy, kích thước 120/70-17', 450000, 50, 10, 'Lốp xe chất lượng cao', TRUE, FALSE, 'Lốp xe Michelin chất lượng cao, chống mài mòn, bám đường tốt', 1),
+(2, 'Lốp xe Bridgestone 130/70-17', 'Lốp xe Bridgestone cho xe máy, kích thước 130/70-17', 500000, 40, 15, 'Lốp xe Bridgestone bền bỉ', FALSE, TRUE, 'Lốp xe Bridgestone với khả năng bám đường vượt trội', 1),
+(3, 'Phuộc xe Shock Absorber', 'Phuộc xe máy, giảm sóc trước', 350000, 30, 5, 'Phuộc xe Shock Absorber', TRUE, FALSE, 'Phuộc xe Shock Absorber cho xe máy, tăng cường khả năng giảm sóc', 3),
+(4, 'Ắc quy xe máy Varta', 'Ắc quy cho xe máy, 12V', 250000, 20, 0, 'Ắc quy Varta chất lượng cao', TRUE, FALSE, 'Ắc quy xe máy Varta, cung cấp nguồn điện ổn định cho xe', 4),
+(5, 'Đèn pha xe máy LED', 'Đèn pha xe máy LED sáng mạnh', 200000, 60, 20, 'Đèn pha xe máy LED', TRUE, TRUE, 'Đèn pha xe máy LED với ánh sáng mạnh mẽ, tiết kiệm năng lượng', 5);
+
+
+
+INSERT INTO `motopartsshop`.`categories` (`name`, `description`) VALUES
+('Lốp xe', 'Các loại lốp xe máy các kích thước và thương hiệu'),
+('Động cơ', 'Phụ tùng động cơ cho xe máy các loại'),
+('Phuộc xe', 'Các loại phuộc xe máy, giảm sóc trước và sau'),
+('Ắc quy', 'Ắc quy cho xe máy, các thương hiệu nổi tiếng'),
+('Phụ kiện xe', 'Các phụ kiện trang trí, bảo vệ xe máy');
+
+
+
+INSERT INTO `motopartsshop`.`color` (`name`, `code`, `img`, `id_product`) VALUES
+('Đỏ', '#FF0000', 'a.jpg', 1),
+('Đen', '#000000', 'b.jpg', 2),
+('Xanh', '#008000', 'c.jpg', 3),
+('Trắng', '#FFFFFF', 'd.jpg', 4),
+('Vàng', '#FFFF00', 'e.jpg', 5);
+
