@@ -15,8 +15,9 @@
 		<div class="span4">
 			<div class="offerNoteWrapper">
 				<h1 class="dotmark">
-					<i class="icon-cut"></i> Twitter Bootstrap shopping cart HTML
-					template is available @ $14
+					<i class="icon-cut"></i> Phụ tùng & Đồ chơi xe máy cao cấp.
+
+							Làm từ: 8h - 18h (T2-CN)
 				</h1>
 			</div>
 		</div>
