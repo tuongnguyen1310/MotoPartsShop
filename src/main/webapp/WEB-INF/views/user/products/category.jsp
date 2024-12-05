@@ -34,7 +34,6 @@
 </style>
 </head>
 <body>
-	<h1>${ productsPaginate.size() }</h1>
 	<div class="well well-small">
 		<div class="row">
 			<span style="margin-left: 25px;">Danh sách sản phẩm</span> <select

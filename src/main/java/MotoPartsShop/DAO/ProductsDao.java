@@ -134,5 +134,11 @@ public class ProductsDao {
 		return list;
 	}
 	
+	public ProductsDto findProductsByID(int id) {
+		String sqlString = sqlProductByIDProduct(id).toString();
+		ProductsDto product = _jdbcTemplate.queryForObject(sqlString, new ProductsDtoMapper());
+		return product;
+	}
+	
 	
 }
