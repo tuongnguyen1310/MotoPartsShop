@@ -1,5 +1,6 @@
 package MotoPartsShop.DAO;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,6 +67,21 @@ public class ProductsDao {
 		}
 		return sqlBuffer.toString();
 	}
+	
+	private StringBuffer sqlProductByIDCategory(int id) {
+		StringBuffer sqlBuffer = sqlString();
+		sqlBuffer.append("WHERE 1 = 1 ");
+		sqlBuffer.append("AND id_category = " + id + " ");
+		
+		return sqlBuffer;
+	}
+	
+	private StringBuffer sqlProductByPaginates(int id, int start, int totalPage) {
+		StringBuffer sqlBuffer = sqlProductByIDCategory(id);
+		sqlBuffer.append("LIMIT " + start + ", " + totalPage + " ");
+		
+		return sqlBuffer;
+	}
 
 	public List<ProductsDto> GetDataHighLightProducts() {
 		String sqlString = sqlProduct(NO, YES);
@@ -84,4 +100,45 @@ public class ProductsDao {
 		List<ProductsDto> list = _jdbcTemplate.query(sqlString, new ProductsDtoMapper());
 		return list;
 	}
+	
+	public List<ProductsDto> GetDataAllProductsByIDCategory(int id) {
+		String sqlString = sqlProductByIDCategory(id).toString();
+		List<ProductsDto> list = _jdbcTemplate.query(sqlString, new ProductsDtoMapper());
+		return list;
+	}
+	
+	public List<ProductsDto> GetDataAllProductsPaginates(int id, int start, int totalPage) {
+		StringBuffer sqlGetDataByID = sqlProductByIDCategory(id);
+		List<ProductsDto> listProductsByID = _jdbcTemplate.query(sqlGetDataByID.toString(), new ProductsDtoMapper());
+		List<ProductsDto> list = new ArrayList<ProductsDto>();
+		if(listProductsByID.size() > 0) {
+			String sqlString = sqlProductByPaginates(id, start, totalPage).toString();
+			 list = _jdbcTemplate.query(sqlString, new ProductsDtoMapper());
+		}
+		return list;
+	}
+
+	private StringBuffer sqlProductByIDProduct(int id) {
+		StringBuffer sqlBuffer = sqlString();
+		sqlBuffer.append("WHERE 1 = 1 ");
+		sqlBuffer.append("AND p.id = " + id + " ");
+		sqlBuffer.append("LIMIT 1 ");
+		
+		
+		return sqlBuffer;
+	}
+	
+	public List<ProductsDto> getAllProductsByID(int id) {
+		String sqlString = sqlProductByIDProduct(id).toString();
+		List<ProductsDto> list = _jdbcTemplate.query(sqlString, new ProductsDtoMapper());
+		return list;
+	}
+	
+	public ProductsDto findProductsByID(int id) {
+		String sqlString = sqlProductByIDProduct(id).toString();
+		ProductsDto product = _jdbcTemplate.queryForObject(sqlString, new ProductsDtoMapper());
+		return product;
+	}
+	
+	
 }
