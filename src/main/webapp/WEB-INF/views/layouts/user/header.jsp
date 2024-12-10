@@ -6,8 +6,7 @@
 	<div class="row">
 		<div class="span4">
 			<h1>
-				<a class="logo" href="index.html"><span>Twitter Bootstrap
-						ecommerce template</span> <img
+				<a class="logo" href="<c:url value="/home"/>"><span>MotoPartShop</span> <img
 					src="<c:url value="/assets/user/img/logo-shop-moto-parts.png"/>"
 					alt="Shop Phu Tung"> </a>
 			</h1>
@@ -15,9 +14,8 @@
 		<div class="span4">
 			<div class="offerNoteWrapper">
 				<h1 class="dotmark">
-					<i class="icon-cut"></i> Phụ tùng & Đồ chơi xe máy cao cấp.
-
-							Làm từ: 8h - 18h (T2-CN)
+					<i class="icon-cut"></i> Phụ tùng & Đồ chơi xe máy cao cấp. Làm từ:
+					8h - 18h (T2-CN)
 				</h1>
 			</div>
 		</div>
@@ -26,7 +24,7 @@
 				<br> <strong> Support (24/7) : 0345 517 135 </strong><br>
 				<br>
 			</p>
-			<span class="btn btn-mini">[ 2 ] <span
+			<span class="btn btn-mini">[ ${ totalQuantyCart } ] <span
 				class="icon-shopping-cart"></span></span> <span
 				class="btn btn-warning btn-mini">$</span> <span class="btn btn-mini">&pound;</span>
 			<span class="btn btn-mini">&euro;</span>
@@ -37,6 +35,8 @@
 <!--
 Navigation Bar Section 
 -->
+
+
 <div class="navbar">
 	<div class="navbar-inner">
 		<div class="container">
@@ -47,21 +47,11 @@ Navigation Bar Section
 			<div class="nav-collapse">
 				<ul class="nav">
 
-					<c:forEach var="item" items="${ menus }" varStatus="index">
-
-						<c:if test="${ index.first }">
-							<li class="active">
-						</c:if>
-
-						<c:if test="${ not index.first }">
-							<li class="">
-						</c:if>
-
-						<a href="list-view.html">${ item.name }</a>
-						</li>
-
-
-					</c:forEach>
+					<li class="active"><a href="<c:url value="/"/>">Trang chủ</a></li>
+					<li class=""><a href="<c:url value="/san-pham"/>">Sản phẩm</a></li>
+					<li class=""><a href="<c:url value="/gio-hang"/>">Giỏ hàng</a></li>
+					<li class=""><a href="<c:url value="/bai-viet"/>">Bài viết</a></li>
+					<li class=""><a href="<c:url value="/lien-he"/>">Liên hệ</a></li>
 
 
 
@@ -70,28 +60,33 @@ Navigation Bar Section
 					<input type="text" placeholder="Search" class="search-query span2">
 				</form>
 				<ul class="nav pull-right">
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="#"><span class="icon-lock"></span>
-							Đăng nhập <b class="caret"></b></a>
-						<div class="dropdown-menu">
-							<form class="form-horizontal loginFrm">
-								<div class="control-group">
-									<input type="text" class="span2" id="inputEmail"
-										placeholder="Email">
-								</div>
-								<div class="control-group">
-									<input type="password" class="span2" id="inputPassword"
-										placeholder="Password">
-								</div>
-								<div class="control-group">
-									<label class="checkbox"> <input type="checkbox">
-										Remember me
-									</label>
-									<button type="submit" class="shopBtn btn-block">Sign
-										in</button>
-								</div>
-							</form>
-						</div></li>
+					<c:if test="${ empty LoginInfo }">
+						<li class="dropdown"><a data-toggle="dropdown"
+							class="dropdown-toggle" href="/dang-nhap"><span
+								class="icon-lock"></span> Đăng nhập <b class="caret"></b></a>
+							<div class="dropdown-menu">
+								<form class="form-horizontal loginFrm">
+									<div class="control-group">
+										<input type="text" class="span2" id="inputEmail"
+											placeholder="Email">
+									</div>
+									<div class="control-group">
+										<input type="password" class="span2" id="inputPassword"
+											placeholder="Password">
+									</div>
+									<div class="control-group">
+										<label class="checkbox"> <input type="checkbox">
+											Remember me
+										</label>
+										<button type="submit" class="shopBtn btn-block">Sign
+											in</button>
+									</div>
+								</form>
+							</div></li>
+					</c:if>
+					<c:if test="${ not empty LoginInfo }">
+						<li><a href="#">${ LoginInfo.display_name }<b class="caret"></b></a></li>
+					</c:if>
 				</ul>
 			</div>
 		</div>

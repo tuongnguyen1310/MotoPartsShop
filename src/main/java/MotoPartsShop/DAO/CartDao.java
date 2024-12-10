@@ -23,6 +23,10 @@ public class CartDao {
 		CartDto itemCartDto = new CartDto();
 		ProductsDto product = productsDao.findProductsByID(id);
 		if(product != null && cart.containsKey(id) == true) {
+			itemCartDto = cart.get(id);
+			itemCartDto.setQuanty(itemCartDto.getQuanty() + 1);
+			itemCartDto.setTotalPrice(itemCartDto.getQuanty() * itemCartDto.getProduct().getPrice());
+		} else {
 			itemCartDto.setProduct(product);
 			itemCartDto.setQuanty(1);
 			double totalPrice = product.getPrice();
