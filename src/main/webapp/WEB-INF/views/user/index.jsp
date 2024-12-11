@@ -6,7 +6,6 @@
 
 	<!-- 
 	Body Section -->
-
 	<div class="row">
 		<div id="sidebar" class="span3">
 			<div class="well well-small">
@@ -18,20 +17,11 @@
 						<li>
 					</c:forEach>
 
-					<li><a class="totalInCart" href="cart.html"><strong>Đã
-								mua <span class="badge badge-warning pull-right"
-								style="line-height: 18px;">$448.42</span>
-						</strong></a></li>
+					
 				</ul>
 			</div>
 
-			<div class="well well-small alert alert-warning cntr">
-				<h2>50% Discount</h2>
-				<p>
-					only valid for online order. <br> <br> <a
-						class="defaultBtn" href="#">Click here </a>
-				</p>
-			</div>
+			
 			<div class="well well-small">
 				<a href="#"><img
 					src="<c:url value="/assets/user/img/paypal.jpg"/>"
@@ -173,8 +163,7 @@ New Products
 		<div class="well well-small">
 			<h3>
 				<a class="btn btn-mini pull-right" href="products.html"
-					title="View more">Xem thêm<span class="icon-plus"></span></a> Sản
-				phẩm nối bật
+					title="View more">Xem thêm<span class="icon-plus"></span></a> Sản phẩm nối bật
 			</h3>
 			<hr class="soften" />
 			<div class="row-fluid">
@@ -195,7 +184,7 @@ New Products
 											<a class="defaultBtn"
 												href="<c:url value='/assets/user/html/product_details.html'/>"
 												title="Click to view"> <span class="icon-zoom-in"></span>
-											</a> <a class="shopBtn" href="#" title="add to cart"> <span
+											</a> <a class="shopBtn" href="<c:url value="/AddCart/${ item.id_product }"/>" title="add to cart"> <span
 												class="icon-plus"></span>
 											</a> <span class="pull-right"><fmt:formatNumber
 													type="number" groupingUsed="true" value="${ item.price }" />₫

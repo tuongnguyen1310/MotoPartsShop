@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://www.opensymphony.com/sitemesh/decorator"
 	prefix="decorator"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -34,19 +34,23 @@
 			<div class="container">
 				<div class="alignR">
 					<div class="pull-left socialNw">
-						<a href="#"><span class="icon-twitter"></span></a> <a href="#"><span
-							class="icon-facebook"></span></a> <a href="#"><span
-							class="icon-youtube"></span></a> <a href="#"><span
-							class="icon-tumblr"></span></a>
+
 					</div>
-					<a class="active" href="index.html"> <span class="icon-home"></span>
-						Home
-					</a> <a href="#"><span class="icon-user"></span> My Account</a> <a
-						href="register.html"><span class="icon-edit"></span> Free
-						Register </a> <a href="contact.html"><span class="icon-envelope"></span>
-						Contact us</a> <a href="cart.html"><span
-						class="icon-shopping-cart"></span> 2 Item(s) - <span
-						class="badge badge-warning"> $448.42</span></a>
+					
+					<c:if test="${ not empty LoginInfo }">
+						<a href="#"><span class="icon-user"></span> ${ LoginInfo.display_name }</a> <a
+						href="<c:url value="/dang-xuat"/>"><span class="icon-edit"></span> Đăng xuất </a>
+					</c:if>
+					<c:if test="${ empty LoginInfo }">
+						<a
+						href="<c:url value="/dang-ky"/>"><span class="icon-edit"></span> Đăng nhập </a>
+					</c:if>
+					 
+					 <a href="<c:url value="/gio-hang"/>"><span
+						class="icon-shopping-cart"></span> ${ totalQuantyCart } Sản phẩm -
+						<span class="badge badge-warning"> <fmt:formatNumber
+								type="number" groupingUsed="true" value="${ totalPriceCart }" />₫
+					</span></a>
 				</div>
 			</div>
 		</div>
@@ -71,16 +75,8 @@ Lower Header Section
 
 	<div class="copyright">
 		<div class="container">
-			<p class="pull-right">
-				<a href="#"><img src="assets/img/maestro.png" alt="payment"></a>
-				<a href="#"><img src="assets/img/mc.png" alt="payment"></a> <a
-					href="#"><img src="assets/img/pp.png" alt="payment"></a> <a
-					href="#"><img src="assets/img/visa.png" alt="payment"></a> <a
-					href="#"><img src="assets/img/disc.png" alt="payment"></a>
-			</p>
-			<span>Copyright &copy; 2013<br> bootstrap ecommerce
-				shopping template
-			</span>
+			
+
 		</div>
 	</div>
 	<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
@@ -91,5 +87,7 @@ Lower Header Section
 	<script
 		src="<c:url value="/assets/user/js/jquery.scrollTo-1.4.3.1-min.js"/>"></script>
 	<script src="<c:url value="/assets/user/js/shop.js"/>"></script>
+
+	<decorator:getProperty property="page.script"></decorator:getProperty>
 </body>
 </html>

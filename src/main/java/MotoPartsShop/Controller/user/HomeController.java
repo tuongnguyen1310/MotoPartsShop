@@ -19,4 +19,12 @@ public class HomeController extends BaseController{
 		return _mvShare;
 	}
 
+	
+	@RequestMapping(value =  "/thanh-toan-thanh-cong" )
+	public ModelAndView XacNhanThanhToan() {
+		_mvShare.addObject("categories", _homeService.getDataCategorys());
+		_mvShare.addObject("products", _homeService.getDataProducts());
+		_mvShare.setViewName("user/bills/billconfirm");
+		return _mvShare;
+	}
 }
