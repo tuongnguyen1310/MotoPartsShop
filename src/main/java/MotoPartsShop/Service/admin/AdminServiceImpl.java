@@ -64,24 +64,25 @@ public class AdminServiceImpl implements IAdminService{
         return usersDao.getDataAllUser();
     }
 	
+	
+	public Users getUserById(int id) {
+        // Tìm người dùng theo ID, trả về Optional để xử lý trường hợp không tìm thấy người dùng
+        return usersDao.GetUserById(id);
+    }
 
-//    public List<Users> getAllUsers() {
-//        return userDao.GetDataProducts();
-//    }
-//
-//    public Users getUserById(int id) {
-//        return userDao.getUserById(id);
-//    }
-//
-//    public boolean addUser(Users user) {
-//        return userDao.addUser(user);
-//    }
-//
-//    public boolean updateUser(Users user) {
-//        return userDao.updateUser(user);
-//    }
-//
-//    public boolean deleteUser(int id) {
-//        return userDao.deleteUser(id);
-//    }
+    // Phương thức để lưu hoặc cập nhật người dùng
+    public void saveUser(Users user) {
+        usersDao.save(user);
+    }
+	public int addUser(String username, String password, String displayName, String address, int role) {
+        return usersDao.addUser(username, password, displayName, address, role);
+    }
+
+    public int updateUser(int id, String username, String password, String displayName, String address, int role) {
+        return usersDao.updateUser(id, username, password, displayName, address, role);
+    }
+
+    public void deleteUser(int id) {
+        usersDao.deleteUser(id);
+    }
 }

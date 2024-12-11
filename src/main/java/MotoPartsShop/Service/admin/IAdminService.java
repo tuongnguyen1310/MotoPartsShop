@@ -24,4 +24,7 @@ public interface IAdminService {
 	public List<ProductsDto> getDataNewProducts();
 	public List<ProductsDto> getDataHighLightProducts();
 	public List<ProductsDto> getDataProducts();
+	public int addUser(String username, String password, String displayName, String address, int role);
+	public int updateUser(int id, String username, String password, String displayName, String address, int role);
+	public void deleteUser(int id);
 }

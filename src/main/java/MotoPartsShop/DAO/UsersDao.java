@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -44,10 +45,52 @@ public class UsersDao {
 		Users resultUsers = _jdbcTemplate.queryForObject(sql, new MapperUsers());
 		return resultUsers;
 	}
+	
+	public Users GetUserById(int id) {
+		String sql = "SELECT * FROM users WHERE id = '" + id + "' ";
+		try {
+	        return _jdbcTemplate.queryForObject(sql, new MapperUsers());
+	    } catch (EmptyResultDataAccessException e) {
+	        return null; // Trả về null nếu không tìm thấy người dùng
+	    }
+	}
 
 	public List<Users> getDataAllUser(){
 		String sql = "SELECT * FROM motopartsshop.users ";
 		List<Users> list = _jdbcTemplate.query(sql, new MapperUsers());
 		return list;
 	}
+	
+	public int addUser(String username, String password, String displayName, String address, int role) {
+        String sql = "INSERT INTO users (username, password, display_name, address, role) VALUES (?, ?, ?, ?, ?)";
+        return _jdbcTemplate.update(sql, username, password, displayName, address, role);
+    }
+
+    // Update User
+    public int updateUser(int id, String username, String password, String displayName, String address, int role) {
+        String sql = "UPDATE users SET user = ?, password = ?, display_name = ?, address = ?, role = ? WHERE id = ?";
+        return _jdbcTemplate.update(sql, username, password, displayName, address, role, id);
+    }
+
+    // Delete User
+    public int deleteUser(int id) {
+        String sql = "DELETE FROM users WHERE id = ?";
+        return _jdbcTemplate.update(sql, id);
+    }
+
+    public void save(Users user) {
+        String checkSql = "SELECT COUNT(*) FROM users WHERE id = ?";
+        int count = _jdbcTemplate.queryForObject(checkSql, Integer.class, user.getId());
+
+        if (count > 0) {
+            // Cập nhật thông tin người dùng
+            String updateSql = "UPDATE users SET username = ?, password = ?, display_name = ?, address = ?, role = ? WHERE id = ?";
+            _jdbcTemplate.update(updateSql, user.getUser(), user.getPassword(), user.getDisplay_name(), user.getAddress(), user.getRole(), user.getId());
+        } else {
+            // Thêm mới người dùng
+            String insertSql = "INSERT INTO users (username, password, display_name, address, role) VALUES (?, ?, ?, ?, ?)";
+            _jdbcTemplate.update(insertSql, user.getUser(), user.getPassword(), user.getDisplay_name(), user.getAddress(), user.getRole());
+        }
+    }
+
 }
