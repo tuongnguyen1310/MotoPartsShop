@@ -7,8 +7,15 @@ public class Users {
 	private String password;
 	private String display_name;
 	private String address;
+	private int role;
 	
 	
+	public int getRole() {
+		return role;
+	}
+	public void setRole(int role) {
+		this.role = role;
+	}
 	public Users() {
 		super();
 	}

@@ -8,7 +8,13 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class HomeController extends BaseController{
 	
-	@RequestMapping(value = { "/", "/home" })
+	@RequestMapping(value = "/")
+    public String redirectToHome() {
+        // Chuyển hướng người dùng đến trang /home
+        return "redirect:/home";
+    }
+	
+	@RequestMapping(value = {"/home"})
 	public ModelAndView Index() {
 		_mvShare.addObject("slides", _homeService.getDataSlides());
 		_mvShare.addObject("categories", _homeService.getDataCategorys());

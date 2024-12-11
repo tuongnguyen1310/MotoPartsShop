@@ -71,8 +71,12 @@ public class UserController extends BaseController {
     public ModelAndView Login(HttpSession session , @ModelAttribute("user") Users user) {
         user = accountServiceImpl.checkAccount(user);
         if(user != null) {
-        	_mvShare.setViewName("redirect:home");
             session.setAttribute("LoginInfo", user);
+            if(user.getRole() == 1) {
+            	_mvShare.setViewName("redirect:/admin");
+            } else {
+                _mvShare.setViewName("redirect:/home");
+            }
         }
         else {
         	_mvShare.addObject("statusLogin", "Đăng nhập thất bại!");

@@ -1,11 +1,25 @@
 <decorators defaultdir="/WEB-INF/views/layouts" >
 	
 	<decorator name="user" page="user.jsp">
-		<pattern>/*</pattern>
+		<pattern>/home</pattern>
+		<pattern>/gio-hang</pattern>
+		<pattern>/AddCart/*</pattern>
+		<pattern>/Checkout</pattern>
+		<pattern>/san-pham/*</pattern>
+		<pattern>/thanh-toan-thanh-cong</pattern>
+		<pattern>/chi-tiet-san-pham/*</pattern>
+		<pattern>/all-san-pham</pattern>
+		<pattern>/all-san-pham/*</pattern>
+		<pattern>/dang-ky</pattern>
+		<pattern>/dang-nhap</pattern>
+		<pattern>/dang-xuat</pattern>
+		
+		
 	</decorator>
 	
 	<decorator name="admin" page="admin.jsp">
-		<pattern></pattern>
+		<pattern>/admin</pattern>
+		<pattern>/admin/*</pattern>
 	</decorator>
 
 </decorators>
