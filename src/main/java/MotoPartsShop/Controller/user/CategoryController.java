@@ -20,7 +20,7 @@ public class CategoryController extends BaseController{
 	private PaginateServiceImpl paginateServiceImpl;
 
 	private int totalProductsPage = 9;
-	
+
 	@RequestMapping(value = "/san-pham/{id}")
 	public ModelAndView Product(@PathVariable String id) {
 		_mvShare.setViewName("user/products/category");

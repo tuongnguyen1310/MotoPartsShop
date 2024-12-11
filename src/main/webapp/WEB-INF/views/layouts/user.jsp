@@ -34,14 +34,9 @@
 			<div class="container">
 				<div class="alignR">
 					<div class="pull-left socialNw">
-						<a href="#"><span class="icon-twitter"></span></a> <a href="#"><span
-							class="icon-facebook"></span></a> <a href="#"><span
-							class="icon-youtube"></span></a> <a href="#"><span
-							class="icon-tumblr"></span></a>
+
 					</div>
-					<a class="active" href="index.html"> <span class="icon-home"></span>
-						Trang chủ
-					</a>
+					
 					<c:if test="${ not empty LoginInfo }">
 						<a href="#"><span class="icon-user"></span> ${ LoginInfo.display_name }</a> <a
 						href="<c:url value="/dang-xuat"/>"><span class="icon-edit"></span> Đăng xuất </a>
@@ -51,8 +46,7 @@
 						href="<c:url value="/dang-ky"/>"><span class="icon-edit"></span> Đăng nhập </a>
 					</c:if>
 					 
-					<a href="contact.html"><span class="icon-envelope"></span>
-						Contact us</a> <a href="<c:url value="/gio-hang"/>"><span
+					 <a href="<c:url value="/gio-hang"/>"><span
 						class="icon-shopping-cart"></span> ${ totalQuantyCart } Sản phẩm -
 						<span class="badge badge-warning"> <fmt:formatNumber
 								type="number" groupingUsed="true" value="${ totalPriceCart }" />₫
@@ -81,16 +75,8 @@ Lower Header Section
 
 	<div class="copyright">
 		<div class="container">
-			<p class="pull-right">
-				<a href="#"><img src="assets/img/maestro.png" alt="payment"></a>
-				<a href="#"><img src="assets/img/mc.png" alt="payment"></a> <a
-					href="#"><img src="assets/img/pp.png" alt="payment"></a> <a
-					href="#"><img src="assets/img/visa.png" alt="payment"></a> <a
-					href="#"><img src="assets/img/disc.png" alt="payment"></a>
-			</p>
-			<span>Copyright &copy; 2013<br> bootstrap ecommerce
-				shopping template
-			</span>
+			
+
 		</div>
 	</div>
 	<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>
