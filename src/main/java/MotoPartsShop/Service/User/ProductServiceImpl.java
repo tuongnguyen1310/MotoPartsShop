@@ -22,4 +22,16 @@ public class ProductServiceImpl implements IProductService{
 		List<ProductsDto> list = productsDao.GetDataAllProductsByIDCategory(id);
 		return list;
 	}
+	
+	public List<ProductsDto> getProducts() {
+		List<ProductsDto> list = productsDao.GetDataProducts();
+		return list;
+	}
+
+	@Override
+	public List<ProductsDto> getDataProductsPaginate(int start, int totalPage) {
+		List<ProductsDto> list = productsDao.GetProductsPaginates(start, totalPage);
+		return list;
+	}
+
 }

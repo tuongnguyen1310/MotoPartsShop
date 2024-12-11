@@ -45,7 +45,7 @@ Navigation Bar Section
 				<ul class="nav">
 
 					<li class="active"><a href="<c:url value="/"/>">Trang chủ</a></li>
-					<li class=""><a href="<c:url value="/san-pham"/>">Sản phẩm</a></li>
+					<li class=""><a href="<c:url value="/all-san-pham/1"/>">Sản phẩm</a></li>
 					<li class=""><a href="<c:url value="/gio-hang"/>">Giỏ hàng</a></li>
 					<li class=""><a href="<c:url value="/lien-he"/>">Liên hệ</a></li>
 

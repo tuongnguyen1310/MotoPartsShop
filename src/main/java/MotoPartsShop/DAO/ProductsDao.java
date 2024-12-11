@@ -95,11 +95,41 @@ public class ProductsDao {
 		return list;
 	}
 	
+	public StringBuffer sqlGetAllProduct() {
+		StringBuffer sqlBuffer = sqlString();
+		sqlBuffer.append("GROUP BY ");	
+		sqlBuffer.append("    p.id, p.id_category, p.name, p.price, p.sale, p.title, p.highlight, p.new_product, p.detail, c.id, c.name, c.code, c.img, p.created_at, p.updated_at ");
+		sqlBuffer.append("ORDER BY RAND() ");
+		
+		return sqlBuffer;
+		
+	}
+	
+	public StringBuffer sqlGetProducts(int start, int totalPage) {
+		StringBuffer sqlBuffer = sqlString();
+		sqlBuffer.append("LIMIT " + start + ", " + totalPage + " ");
+		
+		return sqlBuffer;
+		
+	}
+	
 	public List<ProductsDto> GetDataProducts() {
-		String sqlString = sqlProduct(NO, NO);
+		String sqlString = sqlGetAllProduct().toString();
 		List<ProductsDto> list = _jdbcTemplate.query(sqlString, new ProductsDtoMapper());
 		return list;
 	}
+
+
+	public List<ProductsDto> GetProductsPaginates(int start, int totalPage) {
+		String sqlString = sqlGetProducts(start, totalPage).toString();
+		List<ProductsDto> listProducts = _jdbcTemplate.query(sqlString, new ProductsDtoMapper());
+		List<ProductsDto> list = new ArrayList<ProductsDto>();
+		if(listProducts.size() > 0) {
+			 list = _jdbcTemplate.query(sqlString, new ProductsDtoMapper());
+		}
+		return list;
+	}
+
 	
 	public List<ProductsDto> GetDataAllProductsByIDCategory(int id) {
 		String sqlString = sqlProductByIDCategory(id).toString();

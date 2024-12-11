@@ -10,4 +10,7 @@ import MotoPartsShop.DTO.ProductsDto;
 public interface IProductService {
 	public ProductsDto getAllProductsByID(int id);
 	public List<ProductsDto> getAllProductsByIDCategory(int id);
+	public List<ProductsDto> getProducts();
+	public List<ProductsDto> getDataProductsPaginate(int start, int totalPage);
+
 }
