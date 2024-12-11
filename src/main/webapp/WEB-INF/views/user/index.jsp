@@ -17,11 +17,7 @@
 						<li>
 					</c:forEach>
 
-					<li><a class="totalInCart" href="<c:url value="/gio-hang"/>"><strong>Đã
-								mua <span class="badge badge-warning pull-right"
-								style="line-height: 18px;"><fmt:formatNumber
-											type="number" groupingUsed="true" value="${ totalPriceCart }" />₫</span>
-						</strong></a></li>
+					
 				</ul>
 			</div>
 
