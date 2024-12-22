@@ -4,6 +4,21 @@
 
 
 <head>
+<style>
+    .g-recaptcha {
+        transform: scale(0.85); /* Thu nhỏ reCAPTCHA */
+        transform-origin: 0 0; /* Căn chỉnh reCAPTCHA từ góc trên bên trái */
+        margin-top: -10px; /* Điều chỉnh khoảng cách phía trên */
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column; /* Hoặc dùng row nếu muốn nằm ngang */
+        align-items: flex-start; /* Căn từ bên trái */
+        gap: 10px; /* Tạo khoảng cách giữa các phần tử */
+    }
+</style>
+
 <meta charset="UTF-8">
 <title>Đăng ký</title>
 </head>
@@ -116,7 +131,7 @@
 						<c:if test="${not empty status}">
 							<div class="alert alert-info">${status}</div>
 						</c:if>
-						
+
 
 						<!-- Form đăng ký người dùng -->
 						<form:form action="dang-ky" method="POST" modelAttribute="user">
@@ -168,7 +183,6 @@
 							<div class="alert alert-info">${statusLogin}</div>
 						</c:if>
 						<form:form action="dang-nhap" method="POST" modelAttribute="user">
-							<br />
 							<div class="control-group">
 								<label class="control-label" for="inputEmail">E-mail:</label>
 								<div class="controls">
@@ -178,10 +192,16 @@
 							</div>
 							<div class="control-group">
 								<label class="control-label" for="inputPassword">Mật
-									khẩu</label>
+									khẩu:</label>
 								<div class="controls">
 									<form:input type="password" class="span3"
 										placeholder="Mời nhập mật khẩu" path="password" />
+								</div>
+							</div>
+							<!-- Thêm Google reCAPTCHA -->
+							<div class="control-group">
+								<div class="controls">
+									<div class="g-recaptcha" data-sitekey="6LcH9KIqAAAAAIWdCO_aJP_CuI5awnEZWT1c6exA" data-size="compact">></div>
 								</div>
 							</div>
 							<div class="control-group">
@@ -191,10 +211,15 @@
 								</div>
 							</div>
 						</form:form>
+
+						<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 					</div>
 				</div>
 			</div>
 
 		</div>
 	</div>
+	
+	
 </body>

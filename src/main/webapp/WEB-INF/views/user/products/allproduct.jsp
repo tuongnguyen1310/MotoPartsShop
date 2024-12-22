@@ -57,7 +57,7 @@
 								<a
 									href="<c:url value='/chi-tiet-san-pham/${ item.id_product }'/>"
 									class="overlay"></a> <a class="zoomTool"
-									href="product_details.html" title="add to cart"> <span
+									href="<c:url value='/chi-tiet-san-pham/${ item.id_product }'/>" title="add to cart"> <span
 									class="icon-search"></span> Xem thêm
 								</a> <a
 									href="<c:url value='/chi-tiet-san-pham/${ item.id_product }'/>">
@@ -71,13 +71,9 @@
 												groupingUsed="true" value="${ item.price }" /> ₫</strong>
 									</p>
 									<h4>
-										<a class="shopBtn" href="#" title="add to cart"> Add to
-											cart </a>
+										<a class="shopBtn" href="<c:url value="/AddCart/${ item.id_product }"/>" title="add to cart"> Thêm vào giỏ hàng </a>
 									</h4>
-									<div class="actionList">
-										<a class="pull-left" href="#">Add to Wish List</a> <a
-											class="pull-left" href="#">Add to Compare</a>
-									</div>
+									
 									<br class="clr">
 								</div>
 							</div>

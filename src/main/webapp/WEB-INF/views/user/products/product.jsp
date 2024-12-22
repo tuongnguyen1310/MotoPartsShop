@@ -210,9 +210,9 @@ Body Section
 											₫
 										</h3>
 										<div class="btn-group">
-											<a href="product_details.html" class="defaultBtn"><span
-												class=" icon-shopping-cart"></span> Add to cart</a> <a
-												href="product_details.html" class="shopBtn">VIEW</a>
+											<a href="<c:url value="/AddCart/${ item.id_product }"/>" class="defaultBtn"><span
+												class=" icon-shopping-cart"></span> Thêm vào giỏ</a> <a
+												href="<c:url value='/chi-tiet-san-pham/${ item.id_product }'/>" class="shopBtn">Xem thêm</a>
 										</div>
 									</form>
 								</div>
