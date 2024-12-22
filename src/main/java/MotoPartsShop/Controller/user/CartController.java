@@ -106,6 +106,8 @@ public class CartController extends BaseController {
 			billsServiceImpl.AddBillsDetail(carts);
 		}
 		session.removeAttribute("Cart");
+		session.removeAttribute("totalQuantyCart");
+		session.removeAttribute("totalPriceCart");
 		return "redirect:gio-hang";
 	}
 

@@ -46,9 +46,9 @@ Navigation Bar Section
 
 					<li class="active"><a href="<c:url value="/admin/usermanager"/>">Người dùng</a></li>
 					<li class=""><a href="<c:url value="/admin/all-san-pham/1"/>">Sản phẩm</a></li>
-					<li class=""><a href="<c:url value="/admin/gio-hang"/>">Đơn hàng</a></li>
-					<li class=""><a href="<c:url value="/admin/category"/>">Danh mục</a></li>
-					<li class=""><a href="<c:url value="/admin/liet-ke"/>">Thống kê</a></li>
+					<li class=""><a href="<c:url value="/admin/don-hang"/>">Đơn hàng</a></li>
+					<li class=""><a href="<c:url value="/admin/danh-muc"/>">Danh mục</a></li>
+					<li class=""><a href="<c:url value="/admin/thong-ke"/>">Thống kê</a></li>
 
 
 

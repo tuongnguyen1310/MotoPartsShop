@@ -133,7 +133,7 @@
 				<div class="alignR">
 					<div class="pull-left socialNw"></div>
 					<a href="#"><span class="icon-user"></span> ${ LoginInfo.display_name }</a>
-					<a href="<c:url value="/dang-xuat"/>"><span class="icon-edit"></span>
+					<a href="<c:url value="admin/dang-xuat"/>"><span class="icon-edit"></span>
 						Đăng xuất </a> 
 				</div>
 		</div>

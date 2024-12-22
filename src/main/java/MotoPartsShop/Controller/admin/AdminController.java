@@ -1,5 +1,6 @@
 package MotoPartsShop.Controller.admin;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.mindrot.jbcrypt.BCrypt;
@@ -94,7 +95,12 @@ public class AdminController extends BaseController {
 	    return "redirect:/admin/usermanager";
 	}
 	
-	
+	@RequestMapping(value = "/dang-xuat", method = RequestMethod.GET)
+    public String Login(HttpSession session , HttpServletRequest request) {
+        session.removeAttribute("LoginInfo");
+        
+        return "redirect:"+request.getHeader("Referer");
+    }
 	
 
 

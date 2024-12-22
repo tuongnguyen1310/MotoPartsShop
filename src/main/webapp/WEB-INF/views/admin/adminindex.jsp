@@ -111,7 +111,7 @@ th {
 							<button
 								onclick="openEditModal(${item.id}, '${item.user}', '${item.display_name}', '${item.address}', ${item.role})">Edit</button>
 							<!-- Nút Delete -->
-							<form action="admin/delete" method="POST"
+							<form action="/MotoPartsShop/admin/delete" method="POST"
 								style="display: inline;">
 								<input type="hidden" name="id" value="${item.id}">
 								<button type="submit"
@@ -134,7 +134,7 @@ th {
 				<h2
 					style="margin-bottom: 20px; text-align: center; font-size: 20px; font-weight: bold; color: #333;">Chỉnh
 					sửa thông tin người dùng</h2>
-				<form id="editUserForm" action="admin/edit" method="POST">
+				<form id="editUserForm" action="/MotoPartsShop/admin/edit" method="POST">
 					<input type="hidden" id="editUserId" name="id">
 
 					<div style="margin-bottom: 15px;">
@@ -196,7 +196,7 @@ th {
 				<h2
 					style="margin-bottom: 20px; text-align: center; font-size: 20px; font-weight: bold; color: #333;">Thêm
 					người dùng</h2>
-				<form id="addUserForm" action="admin/add" method="POST">
+				<form id="addUserForm" action="/MotoPartsShop/admin/add" method="POST">
 					<div style="margin-bottom: 15px;">
 						<label for="addUsername"
 							style="font-weight: bold; display: block; margin-bottom: 5px; color: #333;">Username:</label>
