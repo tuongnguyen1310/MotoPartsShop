@@ -22,6 +22,7 @@ public class ProductController extends BaseController {
 	public ModelAndView Index(@PathVariable int id) {
 		_mvShare.setViewName("user/products/product");
 		_mvShare.addObject("product", productServiceImpl.getAllProductsByID(id));
+		_mvShare.addObject("categories", _homeService.getDataCategorys());
 		_mvShare.addObject("productByIDCategory", productServiceImpl.getAllProductsByIDCategory(productServiceImpl.getAllProductsByID(id).getId_category()));
 		return _mvShare;
 	}

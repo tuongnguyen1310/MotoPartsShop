@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/views/layouts/user/taglib.jsp" %>
+<%@ include file="/WEB-INF/views/layouts/user/taglib.jsp"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,30 +8,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Thống kê hóa đơn</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@kurkle/color@0.1.9/dist/color.min.js"></script>
     <style>
-        canvas {
-            max-width: 700px;
-            margin: 20px auto;
-            display: block;
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
         }
-        button {
-            margin: 5px;
-            padding: 10px 15px;
-            border: none;
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+        th {
             background-color: #007bff;
             color: white;
-            cursor: pointer;
-            border-radius: 5px;
         }
-        button:hover {
-            background-color: #0056b3;
+        h1, h3 {
+            text-align: center;
+        }
+        canvas {
+            margin: 20px auto;
+            display: block;
+            max-width: 80%;
         }
     </style>
 </head>
 <body>
-    <h1 style="text-align: center;">Thống kê hóa đơn</h1>
+    <h1>Thống kê hóa đơn</h1>
+    <hr/>
 
+    <!-- Bảng dữ liệu -->
     <table>
         <thead>
             <tr>
@@ -41,84 +50,96 @@
             </tr>
         </thead>
         <tbody>
-            <c:forEach var="item" items="${statistics}">
-                <tr>
-                    <td>${item.month}</td>
-                    <td>${item.year}</td>
-                    <td>${item.billCount}</td>
-                    <td><fmt:formatNumber value="${item.totalIncome}" type="number" groupingUsed="true"/> ₫</td>
-                </tr>
-            </c:forEach>
+            <c:if test="${not empty statistics}">
+                <c:forEach var="item" items="${statistics}">
+                    <tr>
+                        <td>${item.month}</td>
+                        <td>${item.year}</td>
+                        <td>${item.billCount}</td>
+                        <td><fmt:formatNumber value="${item.totalIncome}" type="number" groupingUsed="true"/> ₫</td>
+                    </tr>
+                </c:forEach>
+            </c:if>
         </tbody>
     </table>
 
+    <!-- Biểu đồ -->
     <div>
         <h3>Số hóa đơn theo tháng</h3>
         <canvas id="billCountChart"></canvas>
     </div>
-
     <div>
         <h3>Thu nhập theo tháng</h3>
         <canvas id="incomeChart"></canvas>
     </div>
 
-    <div style="text-align: center;">
-        <h3>Đổi kiểu điểm</h3>
-        <button onclick="applyPointStyle('circle')">Circle</button>
-        <button onclick="applyPointStyle('cross')">Cross</button>
-        <button onclick="applyPointStyle('star')">Star</button>
-        <button onclick="applyPointStyle('triangle')">Triangle</button>
-        <button onclick="applyPointStyle(false)">Default</button>
-    </div>
-
     <script>
-    // Chuyển đổi dữ liệu từ server thành JSON
-    const statistics = JSON.parse('<c:out value="${statistics}" escapeXml="true"/>');
-    
-    // Debug: In ra console để kiểm tra dữ liệu
-    console.log(statistics);
+        // Lấy dữ liệu JSON từ backend
+        const statistics = ${statisticsJson};
 
-    // Dữ liệu cho biểu đồ
-    const months = statistics.map(stat => `${stat.month}/${stat.year}`);
-    const billCounts = statistics.map(stat => stat.billCount);
-    const totalIncomes = statistics.map(stat => stat.totalIncome);
+        console.log("Dữ liệu JSON:", statistics);
 
-    // Biểu đồ số hóa đơn
-    const billCountCtx = document.getElementById('billCountChart').getContext('2d');
-    new Chart(billCountCtx, {
-        type: 'line',
-        data: {
-            labels: months,
-            datasets: [{
-                label: 'Số hóa đơn',
-                data: billCounts,
-                borderColor: 'rgba(75, 192, 192, 1)',
-                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointHoverRadius: 10
-            }]
-        }
-    });
+        // Xử lý dữ liệu cho biểu đồ
+        const months = statistics.map(stat => `${stat.month}/${stat.year}`);
+        const billCounts = statistics.map(stat => stat.billCount);
+        const totalIncomes = statistics.map(stat => stat.totalIncome);
 
-    // Biểu đồ thu nhập
-    const incomeCtx = document.getElementById('incomeChart').getContext('2d');
-    new Chart(incomeCtx, {
-        type: 'bar',
-        data: {
-            labels: months,
-            datasets: [{
-                label: 'Tổng thu nhập',
-                data: totalIncomes,
-                borderColor: 'rgba(255, 99, 132, 1)',
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                pointStyle: 'circle',
-                pointRadius: 6,
-                pointHoverRadius: 10
-            }]
-        }
-    });
-</script>
+        // Biểu đồ số hóa đơn
+        const billCountCtx = document.getElementById('billCountChart').getContext('2d');
+        new Chart(billCountCtx, {
+            type: 'bar',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Số hóa đơn',
+                    data: billCounts,
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true },
+                    tooltip: { enabled: true },
+                },
+            },
+        });
 
+        // Biểu đồ thu nhập
+        const incomeCtx = document.getElementById('incomeChart').getContext('2d');
+        new Chart(incomeCtx, {
+            type: 'line',
+            data: {
+                labels: months,
+                datasets: [{
+                    label: 'Thu nhập',
+                    data: totalIncomes,
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                    borderWidth: 2,
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true },
+                    tooltip: { enabled: true },
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        ticks: {
+                            callback: function(value) {
+                                return new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(value);
+                            }
+                        }
+                    }
+                }
+            },
+        });
+    </script>
 </body>
 </html>

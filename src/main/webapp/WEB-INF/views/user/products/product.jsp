@@ -14,48 +14,26 @@
 	<!-- 
 Body Section 
 -->
-<h1>${ Cart.size() }</h1>
+	
 	<div class="row product-content">
 		<div id="sidebar" class="span3">
 			<div class="well well-small">
 				<ul class="nav nav-list">
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Fashion</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Watches</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Fine Jewelry</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Fashion Jewelry</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Engagement & Wedding</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Men's Jewelry</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Vintage & Antique</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Loose Diamonds </a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>Loose Beads</a></li>
-					<li><a href="products.html"><span
-							class="icon-chevron-right"></span>See All Jewelry & Watches</a></li>
-					<li style="border: 0">&nbsp;</li>
-					<li><a class="totalInCart" href="cart.html"><strong>Total
-								Amount <span class="badge badge-warning pull-right"
-								style="line-height: 18px;">$448.42</span>
-						</strong></a></li>
+
+					<c:forEach var="item" items="${ categories }">
+						<li><a href="<c:url value="/san-pham/${ item.id }"/>"><span
+								class="icon-chevron-right"></span> ${ item.name }</a></li>
+						<li>
+					</c:forEach>
+
+
 				</ul>
 			</div>
 
-			<div class="well well-small alert alert-warning cntr">
-				<h2>50% Discount</h2>
-				<p>
-					only valid for online order. <br> <br> <a
-						class="defaultBtn" href="#">Click here </a>
-				</p>
-			</div>
+
 			<div class="well well-small">
-				<a href="#"><img src="assets/img/paypal.jpg"
+				<a href="#"><img
+					src="<c:url value="/assets/user/img/paypal.jpg"/>"
 					alt="payment method paypal"></a>
 			</div>
 
@@ -64,14 +42,17 @@ Body Section
 			<ul class="nav nav-list promowrapper">
 				<li>
 					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="assets/img/bootstrap-ecommerce-templates.png"
-							alt="bootstrap ecommerce templates">
+						<a class="zoomTool"
+							href="<c:url value="/assets/user/html/product_details.html"/>"
+							title="add to cart"><span class="icon-search"></span> Xem chi
+							tiết</a> <img
+							src="<c:url value="/assets/user/img/anh-minh-hoa-1.jpg"/>"
+							alt="san pham tieu bieu 1">
 						<div class="caption">
 							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
+								<a class="defaultBtn"
+									href="<c:url value="/assets/user/html/product_details.html"/>">VIEW</a>
+								<span class="pull-right">535.000 đ</span>
 							</h4>
 						</div>
 					</div>
@@ -79,14 +60,17 @@ Body Section
 				<li style="border: 0">&nbsp;</li>
 				<li>
 					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="assets/img/shopping-cart-template.png"
-							alt="shopping cart template">
+						<a class="zoomTool"
+							href="<c:url value="/assets/user/html/product_details.html"/>"
+							title="add to cart"><span class="icon-search"></span> Xem chi
+							tiết</a> <img
+							src="<c:url value="/assets/user/img/anh-minh-hoa-2.jpg"/>"
+							alt="san pham tieu bieu 2">
 						<div class="caption">
 							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
+								<a class="defaultBtn"
+									href="<c:url value="/assets/user/html/product_details.html"/>">VIEW</a>
+								<span class="pull-right">2.400.000 đ</span>
 							</h4>
 						</div>
 					</div>
@@ -94,14 +78,17 @@ Body Section
 				<li style="border: 0">&nbsp;</li>
 				<li>
 					<div class="thumbnail">
-						<a class="zoomTool" href="product_details.html"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img src="assets/img/bootstrap-template.png"
-							alt="bootstrap template">
+						<a class="zoomTool"
+							href="<c:url value="/assets/user/html/product_details.html"/>"
+							title="add to cart"><span class="icon-search"></span> Xem chi
+							tiết</a> <img
+							src="<c:url value="/assets/user/img/anh-minh-hoa-3.png"/>"
+							alt="san pham tieu bieu 3">
 						<div class="caption">
 							<h4>
-								<a class="defaultBtn" href="product_details.html">VIEW</a> <span
-									class="pull-right">$22.00</span>
+								<a class="defaultBtn"
+									href="<c:url value="/assets/user/html/product_details.html"/>">VIEW</a>
+								<span class="pull-right">129.000 đ</span>
 							</h4>
 						</div>
 					</div>
@@ -136,7 +123,8 @@ Body Section
 						<h3>${ product.name }</h3>
 						<hr class="soft" />
 
-						<form class="form-horizontal qtyFrm" method="get" action="<c:url value="/AddCart/${ product.id_product }"/>">
+						<form class="form-horizontal qtyFrm" method="get"
+							action="<c:url value="/AddCart/${ product.id_product }"/>">
 							<div class="control-group">
 								<label class="control-label"><span><fmt:formatNumber
 											type="number" groupingUsed="true" value="${ product.price }" />₫</span></label>
@@ -201,12 +189,14 @@ Body Section
 						<c:if test="${ productByIDCategory.size() > 5 }">
 							<c:set var="countList" value="5"></c:set>
 						</c:if>
-						
-						<c:forEach var="item" items="${ productByIDCategory }" begin="1" end="${ countList }" varStatus="loop">
+
+						<c:forEach var="item" items="${ productByIDCategory }" begin="1"
+							end="${ countList }" varStatus="loop">
 
 							<div class="row-fluid">
 								<div class="span2">
-									<img src="<c:url value="/assets/user/img/${ item.img }"/>" alt="">
+									<img src="<c:url value="/assets/user/img/${ item.img }"/>"
+										alt="">
 								</div>
 								<div class="span6">
 									<h5>${ item.name }</h5>
@@ -214,8 +204,11 @@ Body Section
 								</div>
 								<div class="span4 alignR">
 									<form class="form-horizontal qtyFrm">
-										<h3><fmt:formatNumber
-											type="number" groupingUsed="true" value="${ item.price }" />₫</h3>
+										<h3>
+											<fmt:formatNumber type="number" groupingUsed="true"
+												value="${ item.price }" />
+											₫
+										</h3>
 										<div class="btn-group">
 											<a href="product_details.html" class="defaultBtn"><span
 												class=" icon-shopping-cart"></span> Add to cart</a> <a

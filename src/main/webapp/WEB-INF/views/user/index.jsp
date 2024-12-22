@@ -35,8 +35,7 @@
 					<div class="thumbnail">
 						<a class="zoomTool"
 							href="<c:url value="/assets/user/html/product_details.html"/>"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img
+							title="add to cart"><span class="icon-search"></span> Xem chi tiết</a> <img
 							src="<c:url value="/assets/user/img/anh-minh-hoa-1.jpg"/>"
 							alt="san pham tieu bieu 1">
 						<div class="caption">
@@ -53,8 +52,7 @@
 					<div class="thumbnail">
 						<a class="zoomTool"
 							href="<c:url value="/assets/user/html/product_details.html"/>"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img
+							title="add to cart"><span class="icon-search"></span> Xem chi tiết</a> <img
 							src="<c:url value="/assets/user/img/anh-minh-hoa-2.jpg"/>"
 							alt="san pham tieu bieu 2">
 						<div class="caption">
@@ -71,8 +69,7 @@
 					<div class="thumbnail">
 						<a class="zoomTool"
 							href="<c:url value="/assets/user/html/product_details.html"/>"
-							title="add to cart"><span class="icon-search"></span> QUICK
-							VIEW</a> <img
+							title="add to cart"><span class="icon-search"></span> Xem chi tiết</a> <img
 							src="<c:url value="/assets/user/img/anh-minh-hoa-3.png"/>"
 							alt="san pham tieu bieu 3">
 						<div class="caption">
@@ -134,7 +131,7 @@ New Products
 												<a class="zoomTool"
 													href="<c:url value="/assets/user/html/product_details.html"/>"
 													title="add to cart"><span class="icon-search"></span>
-													QUICK VIEW</a> <a href="#" class="tag"></a> <a
+													Xem chi tiết</a> <a href="#" class="tag"></a> <a
 													href="<c:url value="chi-tiet-san-pham/${ item.id_product }"/>"><img
 													src="<c:url value='/assets/user/img/${ item.img }'/>" alt=""></a>
 											</div>
@@ -174,7 +171,7 @@ New Products
 							<li class="span4">
 								<div class="thumbnail">
 									<a class="zoomTool" href="#" title="add to cart"> <span
-										class="icon-search"></span> QUICK VIEW
+										class="icon-search"></span> Xem chi tiết
 									</a> <a href="chi-tiet-san-pham/${ item.id_product }"> <img
 										src="<c:url value='/assets/user/img/${ item.img }'/>" alt="">
 									</a>

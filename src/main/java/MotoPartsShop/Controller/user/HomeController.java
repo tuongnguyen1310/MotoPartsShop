@@ -24,6 +24,17 @@ public class HomeController extends BaseController{
 		_mvShare.setViewName("user/index");
 		return _mvShare;
 	}
+	
+	@RequestMapping(value = {"/lien-he"})
+	public ModelAndView Contact() {
+		_mvShare.addObject("slides", _homeService.getDataSlides());
+		_mvShare.addObject("categories", _homeService.getDataCategorys());
+		_mvShare.addObject("products", _homeService.getDataProducts());
+		_mvShare.addObject("new_products", _homeService.getDataNewProducts());
+		_mvShare.addObject("highlight_products", _homeService.getDataHighLightProducts());
+		_mvShare.setViewName("user/Contact/contact");
+		return _mvShare;
+	}
 
 	
 	@RequestMapping(value =  "/thanh-toan-thanh-cong" )
